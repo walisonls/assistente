@@ -1,27 +1,27 @@
-#BIBLIOTECAS:
-#pip install SpeechRecognition
+#pip install speechRecognition
+#pip install pyaudio //ou instalar o documento alternativo
 #pip install pyttsx3
-#pip install PyAudio (em versões abaixo de 3.6)
-#(em versões acima de 3.6 use isto para instalar o PyAudio)
-#pip install pipwin
-#pipwin install pyaudio
 
 import speech_recognition as sr
-import pyttsx3
 
-audio = sr.Recognizer()
-maquina = pyttsx3.init()
+def ouvir_microfone():
+    microfone = sr.Recognizer()
 
-
-try:
     with sr.Microphone() as source:
-        print('ouvindo...')
-        voz = audio.listen(source)
-        comando = audio.recognize_google(voz, language='pt-BR')
-        comando = comando.lower()
-        if 'mizaki' in comando:
-            print(comando)
-            maquina.say(comando)
-            maquina.runAndWait()
-except:
-    print('Microfone não esta OK')
+        # Chama um algoritimo de redução de ruidos
+        microfone.adjust_for_ambient_noise(source)
+        # Aviso para o usuario falar
+        print("Ouvindo...")
+        # Armazenar audio em uma variavel
+        audio = microfone.listen(source)
+    try:
+        # Aplica um padrão de linguagem a variavel com a menssagem
+        frase = microfone.recognize_google(audio, language='pt-BR')
+        # Retorna a frase pronunciada
+        print("Você disse: " + frase)
+    except sr.UnknownValueError:
+        print("Problema encontrado")
+
+    return frase
+
+ouvir_microfone()
