@@ -1,7 +1,3 @@
-#pip install speechRecognition
-#pip install pyaudio //ou instalar o documento alternativo
-#pip install pyttsx3
-
 import speech_recognition as sr
 
 def ouvir_microfone():
