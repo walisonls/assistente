@@ -1,7 +1,7 @@
-### Bibliotecas-Python
-# pip install speechRecognition
-# pip install pyaudio //ou instalar o documento alternativo
-# pip install pyttsx3
+## Bibliotecas-Python
+#### pip install speechRecognition
+#### pip install pyaudio //ou instalar o documento alternativo
+#### pip install pyttsx3
 
 ### Passos do projeto
 - Adicionar reconhecimento de voz
