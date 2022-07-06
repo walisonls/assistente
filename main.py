@@ -1,23 +1,15 @@
-import speech_recognition as sr
+import voice_input
+import voice_output
 
-def ouvir_microfone():
-    microfone = sr.Recognizer()
+texto = voice_input.ouvir_microfone()
 
-    with sr.Microphone() as source:
-        # Chama um algoritimo de redução de ruidos
-        microfone.adjust_for_ambient_noise(source)
-        # Aviso para o usuario falar
-        print("Ouvindo...")
-        # Armazenar audio em uma variavel
-        audio = microfone.listen(source)
-    try:
-        # Aplica um padrão de linguagem a variavel com a menssagem
-        frase = microfone.recognize_google(audio, language='pt-BR')
-        # Retorna a frase pronunciada
-        print("Você disse: " + frase)
-    except sr.UnknownValueError:
-        print("Problema encontrado")
+print("Você disse: " + texto)
 
-    return frase
+if texto == "Olá":
+    resposta = "Olá, Como o senhor está?"
+else:
+    resposta = "não entendi, pode repetir, por favor?"
 
-ouvir_microfone()
+print("MAQUINA: " + resposta)
+
+voice_output.saida_audio_text(resposta)
